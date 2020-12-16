@@ -28,12 +28,12 @@ export async function getInitialState(): Promise<{
         return data.data;
       }
     } catch (error) {
-      history.push('/user/login');
+      history.push('/auth/login');
     }
     return undefined;
   };
   
-  if (history.location.pathname !== '/user/login') {
+  if (history.location.pathname !== '/auth/login') {
     const currentUser = await fetchUserInfo();
     return {
       fetchUserInfo,
@@ -54,8 +54,8 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     footerRender: () => <Footer />,
     onPageChange: () => {
       const { location } = history;
-      if (!initialState?.currentUser && location.pathname !== '/user/login') {
-        history.push('/user/login');
+      if (!initialState?.currentUser && location.pathname !== '/auth/login') {
+        history.push('/auth/login');
       }
     },
     menuHeaderRender: undefined,
